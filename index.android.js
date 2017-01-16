@@ -16,26 +16,26 @@ import {
 
 import MyScene from './pages/MyScene.js';
 
+//定义格式
+var MOCKED_MOVIES_DATA = [
+  {title: '标题', year:'2015', posters:{thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
+];
+
 export default class MicekingProject extends Component {
   render() {
 
-    let pic = {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
-
+    //let pic = {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
+    var movie = MOCKED_MOVIES_DATA[0];
     return (
-       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View style={styles.container}>
+        <Image source={{uri: movie.posters.thumbnail}}
+         style={styles.thumbnail}/>
 
-        <Image source={pic} style={{width: 193, height:110}}/>
-        </View>
+      <View style={styles.rightContainer}>
+        <Text style={styles.title}>{movie.title}</Text>
+        <Text style={styles.year}>{movie.year}</Text>
+      </View>
+      </View>
     );
   }
 }
@@ -43,19 +43,29 @@ export default class MicekingProject extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  
+  rightContainer: {
+    flex: 1,
   },
-  instructions: {
+
+  thumbnail: {
+    width: 53,
+    height: 81,
+  },
+
+  title: {
+    fontSize: 20,
+    marginBottom: 8,
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  },
+
+  year: {
+    textAlign: 'center',
   },
 });
 
