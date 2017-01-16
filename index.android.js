@@ -10,8 +10,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  Navigator
 } from 'react-native';
+
+import MyScene from './pages/MyScene.js';
 
 export default class MicekingProject extends Component {
   render() {
@@ -19,7 +22,7 @@ export default class MicekingProject extends Component {
     let pic = {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
 
     return (
-      <View style={styles.container}>
+       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -32,7 +35,7 @@ export default class MicekingProject extends Component {
         </Text>
 
         <Image source={pic} style={{width: 193, height:110}}/>
-      </View>
+        </View>
     );
   }
 }
@@ -57,3 +60,26 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('MicekingProject', () => MicekingProject);
+
+/**
+ *       <Navigator initialRoute={{ title: 'My Initial Scene', index : 0}}
+        renderScene={(route, navigator) => {return <MyScene title={route.title}
+
+          //Function to call when a new scene should be displayed
+          onForward={() => {
+            const nextIndex = route.index + 1;
+            navigator.push({
+              title: 'Scene ' + nextIndex,
+              index: nextIndex,
+            });
+          }}
+        
+        //function to call to go back to the previous scene
+        onBack={() => {
+          if(route.index > 0) {
+            navigator.pop();
+          }
+        }}
+        
+         />}}/>
+ */
